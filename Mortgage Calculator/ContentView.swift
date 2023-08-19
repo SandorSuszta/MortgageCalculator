@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  Mortgage Calculator
-//
-//  Created by Nataliia Shusta on 19/08/2023.
-//
 import SwiftUI
 
 struct ContentView: View {
@@ -15,11 +9,9 @@ struct ContentView: View {
     
     @State private var monthlyPayment = 0
     
-    @State private var isMortgageFee = false
-    @State private var mortgageFee = 0
-    
     @FocusState private var isPriceFieldActive
-    @FocusState private var isDepositActive
+    @FocusState private var isDepositFieldActive
+    @FocusState private var isInterestFieldActive
     
     private var depositPercentage: Int {
         guard propertyPrice > 0 else { return 0}
@@ -42,8 +34,7 @@ struct ContentView: View {
                                 ToolbarItemGroup(placement: .keyboard) {
                                     Spacer()
                                     Button {
-                                        isPriceFieldActive = false
-                                        isDepositActive = false
+                                        makeFieldsUnactive()
                                     } label: {
                                         Text("Done")
                                     }
@@ -82,11 +73,19 @@ struct ContentView: View {
                     if deposit > newValue {
                         deposit = newValue
                     }
+                    calculateMonthlyPayment()
                 }
                 .onChange(of: deposit) { newValue in
                     if newValue > propertyPrice {
                         deposit = propertyPrice
                     }
+                    calculateMonthlyPayment()
+                }
+                .onChange(of: loanTerm) { _ in
+                    calculateMonthlyPayment()
+                }
+                .onChange(of: interestRate) { _ in
+                    calculateMonthlyPayment()
                 }
         
                 
@@ -105,11 +104,18 @@ struct ContentView: View {
                         TextField("Interest rate", value: $interestRate, format: .percent)
                             .font(.title2)
                             .keyboardType(.decimalPad)
+                            .focused($isInterestFieldActive)
                         Stepper("Interest stepper", value: $interestRate, in: 0...0.1, step: 0.0001)
                             .labelsHidden()
                     }
                     
                     Slider(value: $interestRate, in: 0...0.1, step: 0.001)
+                }
+                
+                Section("Your payment") {
+                        Text("£\(monthlyPayment)")
+                            .font(.largeTitle)
+                            .frame(maxWidth: .infinity, alignment: .center)
                 }
             }
             .navigationTitle("Mortgage calculator")
@@ -127,8 +133,10 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 extension ContentView {
-    private func validatePriceEntry(_ entry: String) {
-        
+    private func makeFieldsUnactive() {
+        isPriceFieldActive = false
+        isDepositFieldActive = false
+        isInterestFieldActive = false
     }
     
     private func calculateMonthlyPayment() {
