@@ -11,6 +11,8 @@
 		79E718502A9088B300F97437 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E7184F2A9088B300F97437 /* ContentView.swift */; };
 		79E718522A9088B800F97437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79E718512A9088B800F97437 /* Assets.xcassets */; };
 		79E718552A9088B800F97437 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79E718542A9088B800F97437 /* Preview Assets.xcassets */; };
+		79E718602A90ABFC00F97437 /* priceFormatter+Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E7185F2A90ABFC00F97437 /* priceFormatter+Formatter.swift */; };
+		79E718622A90AFA600F97437 /* PriceTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E718612A90AFA600F97437 /* PriceTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		79E7184F2A9088B300F97437 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		79E718512A9088B800F97437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79E718542A9088B800F97437 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		79E7185F2A90ABFC00F97437 /* priceFormatter+Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "priceFormatter+Formatter.swift"; sourceTree = "<group>"; };
+		79E718612A90AFA600F97437 /* PriceTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +55,10 @@
 		79E7184C2A9088B300F97437 /* Mortgage Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				79E7184D2A9088B300F97437 /* Mortgage_CalculatorApp.swift */,
+				79E718652A90AFE200F97437 /* Extensions */,
+				79E718642A90AFC800F97437 /* App */,
+				79E718632A90AFB100F97437 /* Views */,
 				79E7184F2A9088B300F97437 /* ContentView.swift */,
-				79E718512A9088B800F97437 /* Assets.xcassets */,
 				79E718532A9088B800F97437 /* Preview Content */,
 			);
 			path = "Mortgage Calculator";
@@ -65,6 +70,31 @@
 				79E718542A9088B800F97437 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		79E718632A90AFB100F97437 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				79E718612A90AFA600F97437 /* PriceTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		79E718642A90AFC800F97437 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				79E718512A9088B800F97437 /* Assets.xcassets */,
+				79E7184D2A9088B300F97437 /* Mortgage_CalculatorApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		79E718652A90AFE200F97437 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				79E7185F2A90ABFC00F97437 /* priceFormatter+Formatter.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +168,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				79E718502A9088B300F97437 /* ContentView.swift in Sources */,
+				79E718602A90ABFC00F97437 /* priceFormatter+Formatter.swift in Sources */,
 				79E7184E2A9088B300F97437 /* Mortgage_CalculatorApp.swift in Sources */,
+				79E718622A90AFA600F97437 /* PriceTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
