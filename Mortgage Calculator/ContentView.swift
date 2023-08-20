@@ -30,16 +30,6 @@ struct ContentView: View {
                             .font(.title2)
                             .keyboardType(.numberPad)
                             .focused($isPriceFieldActive)
-                            .toolbar {
-                                ToolbarItemGroup(placement: .keyboard) {
-                                    Spacer()
-                                    Button {
-                                        makeFieldsUnactive()
-                                    } label: {
-                                        Text("Done")
-                                    }
-                                }
-                            }
                         
                         Stepper("Price stepper", value: $propertyPrice, in: 0...1_000_000, step: 1000)
                             .labelsHidden()
@@ -70,6 +60,10 @@ struct ContentView: View {
                 }
                 .disabled(propertyPrice < 10_000)
                 .onChange(of: propertyPrice) { newValue in
+                    if propertyPrice > 1_000_000 {
+                        propertyPrice = 1_000_000
+                    }
+                    
                     if deposit > newValue {
                         deposit = newValue
                     }
@@ -119,8 +113,16 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Mortgage calculator")
-            .onAppear() {
-                isPriceFieldActive = true
+            .onTapGesture { makeFieldsUnactive() }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button {
+                        makeFieldsUnactive()
+                    } label: {
+                        Text("Done")
+                    }
+                }
             }
         }
     }
