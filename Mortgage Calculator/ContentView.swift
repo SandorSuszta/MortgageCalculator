@@ -31,11 +31,16 @@ struct ContentView: View {
                             .keyboardType(.numberPad)
                             .focused($isPriceFieldActive)
                         
-                        Stepper("Price stepper", value: $propertyPrice, in: 0...1_000_000, step: 1000)
+                        Stepper("Price stepper", value: $propertyPrice, in: 0...1_000_000, step: 1000) { _ in
+                            makeFieldsUnactive()
+                        }
                             .labelsHidden()
                     }
                     
-                    Slider(value: $propertyPrice, in: 0...1_000_000, step: 10_000)
+                    Slider(value: $propertyPrice, in: 0...1_000_000, step: 10_000) { _ in
+                        makeFieldsUnactive()
+                    }
+                        
                 }
                 
             
@@ -50,13 +55,18 @@ struct ContentView: View {
                         Stepper("Deposit stepper",
                                 value: $deposit,
                                 in: 0...max(propertyPrice, 10000),
-                                step: 1000)
+                                step: 1000) { _ in
+                            makeFieldsUnactive()
+                        }
                         .labelsHidden()
                     }
                     
                     Slider(value: $deposit,
                            in: 0...max(propertyPrice, 10000),
-                           step: 10_000)
+                           step: 10_000) { _ in
+                        makeFieldsUnactive()
+                    }
+                    
                 }
                 .disabled(propertyPrice < 10_000)
                 .onChange(of: propertyPrice) { newValue in
@@ -99,11 +109,15 @@ struct ContentView: View {
                             .font(.title2)
                             .keyboardType(.decimalPad)
                             .focused($isInterestFieldActive)
-                        Stepper("Interest stepper", value: $interestRate, in: 0...0.1, step: 0.0001)
+                        Stepper("Interest stepper", value: $interestRate, in: 0...0.1, step: 0.0001) { _ in
+                            makeFieldsUnactive()
+                        }
                             .labelsHidden()
                     }
                     
-                    Slider(value: $interestRate, in: 0...0.1, step: 0.001)
+                    Slider(value: $interestRate, in: 0...0.1, step: 0.001) { _ in
+                        makeFieldsUnactive()
+                    }
                 }
                 
                 Section("Your payment") {
@@ -113,7 +127,6 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Mortgage calculator")
-            .onTapGesture { makeFieldsUnactive() }
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
